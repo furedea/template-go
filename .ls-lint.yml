@@ -1,7 +1,13 @@
 ls:
   .dir: regex:\.?[a-z0-9]+(-[a-z0-9]+)*
-  .md: regex:[a-z0-9]*([._][a-z0-9]+)* | regex:(README|CONTRIBUTING|CHANGELOG|AGENTS|CLAUDE|SKILL)
-  .*: regex:[a-z0-9]*([._][a-z0-9]+)*
+  <<: &files
+    .md: regex:[a-z0-9]*([._][a-z0-9]+)* | regex:(README|CONTRIBUTING|CHANGELOG|AGENTS|CLAUDE|SKILL)
+    .*: regex:[a-z0-9]*([._][a-z0-9]+)*
+  # Go package directories are identifiers, so they use lowercase letters and digits only.
+  # A nested block replaces the root rules, so it re-merges the file rules.
+  internal:
+    <<: *files
+    .dir: regex:[a-z0-9]+
 
 ignore:
   - .git

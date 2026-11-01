@@ -11,18 +11,23 @@
     let
       system = "aarch64-darwin";
       pkgs = import nixpkgs { inherit system; };
+      unstable = nixpkgs-unstable.legacyPackages.${system};
     in
     {
       devShells.${system}.default = pkgs.mkShell {
+        env.GOTOOLCHAIN = "local";
         packages = with pkgs; [
           commitlint
           deadnix
+          go_1_27
+          gopls
           # lefthook before 2.1.6 runs hooks under a pty, which agent sandboxes deny.
-          nixpkgs-unstable.legacyPackages.${system}.lefthook
+          unstable.lefthook
+          # golangci-lint refuses modules newer than the Go that built it.
+          unstable.golangci-lint
           ls-lint
           nixfmt
           statix
-          # Add language toolchain here (uv, pnpm, cargo, go, ...).
         ];
       };
     };

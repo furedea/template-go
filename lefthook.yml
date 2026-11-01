@@ -15,5 +15,11 @@ pre-commit:
     deadnix:
       glob: "*.nix"
       run: deadnix --fail .
+    format:
+      glob: "*.go"
+      run: golangci-lint fmt --diff
+    lint:
+      glob: "*.go"
+      run: golangci-lint run
     ls-lint:
       run: ls_lint

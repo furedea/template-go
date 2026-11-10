@@ -7,5 +7,7 @@ import (
 )
 
 func TestGreeting(t *testing.T) {
+	t.Parallel()
+
 	assert.Equal(t, "Hello, World!", greeting())
 }

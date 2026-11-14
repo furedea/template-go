@@ -10,6 +10,7 @@ ls:
     .dir: regex:[a-z0-9]+
 
   # Directories named after what they hold, never pkg, util or common.
+  # Matches such a directory at any depth even when it holds only files (verified).
   "**/{pkg,util,common}":
     .dir: exists:0
 

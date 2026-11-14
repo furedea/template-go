@@ -9,10 +9,16 @@ linters:
     - gocognit
     - gocyclo
     - gosec
+    - ireturn
     - nolintlint
     - paralleltest
     - revive
+    - testifylint
+    - thelper
+    - usetesting
   settings:
+    errcheck:
+      check-blank: true
     gocognit:
       min-complexity: 15
     gocyclo:
@@ -23,6 +29,11 @@ linters:
     revive:
       rules:
         - name: package-comments
+        - name: var-naming
+        - name: receiver-naming
+        - name: context-as-argument
+        - name: error-return
+        - name: flag-parameter
         - name: exported
         - name: argument-limit
           arguments: [3]

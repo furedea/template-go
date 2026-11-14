@@ -9,6 +9,10 @@ ls:
     <<: *files
     .dir: regex:[a-z0-9]+
 
+  # Directories named after what they hold, never pkg, util or common.
+  "**/{pkg,util,common}":
+    .dir: exists:0
+
 ignore:
   - .git
   - .direnv

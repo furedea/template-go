@@ -34,6 +34,9 @@ linters:
         - name: context-as-argument
         - name: error-return
         - name: flag-parameter
+        - name: indent-error-flow
+        - name: superfluous-else
+        - name: early-return
         - name: exported
         - name: argument-limit
           arguments: [3]
